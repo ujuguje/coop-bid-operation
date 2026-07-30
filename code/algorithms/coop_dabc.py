@@ -1,4 +1,4 @@
-# [최종] 논문의 Coop-DABC(Case D) 구현 — TD3+BC + 단조 QMIX 믹서(w_final.abs() 수정판)
+# [final] Paper's Coop-DABC (Case D) — TD3+BC with a monotonic QMIX mixer (w_final.abs() fix)
 """
 Coop-DABC — Q-FIXED + MONOTONIC-MIXER variant (ver2, experimental).
 

@@ -1,4 +1,4 @@
-# [최종] 논문의 Coop-DASAC(Case C) 구현 — SAC + 단조 QMIX 믹서(qfix)
+# [final] Paper's Coop-DASAC (Case C) — SAC with a monotonic QMIX mixer
 """
 Cooperative Dual-Agent SAC (Coop-DASAC) -- QFIX version.
 

@@ -1,7 +1,7 @@
-# [최종] 원본 SAC 입력 vs 새 LSTM 입력 비교 CSV (예측모듈 교체 검증용)
+# [final] Comparison CSV: original SAC inputs vs new LSTM-based inputs (validates forecast-module swap)
 """
-원본 SAC 입력 파일 vs 새 LSTM 기반 파일 비교 CSV 생성
-출력: compare_SAC_inputs_orig_vs_LSTM.csv
+Generate a comparison CSV between the original SAC input files and the new
+LSTM-based files. Output: compare_SAC_inputs_orig_vs_LSTM.csv
 """
 import numpy as np
 import pandas as pd

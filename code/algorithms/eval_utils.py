@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
-# [최종] 논문 수치 재현용 공통 평가 헬퍼 — 노트북 B1(Table 4)·B2(Table B.1/B.2)·B3(Table 5)이 사용.
-# 핵심 규칙:
-#   * 모든 평가는 eval 모드(dropout OFF) + deterministic 액션 (학습 중 검증에 있던 train-mode 버그의 수정판)
-#   * 환경 생성 전 Parameters['Cap_Pcs_Ope'] = tol + 2 를 반드시 설정 (set_cap_ope() 사용)
-#   * 체크포인트 위치: results/baseline·sensitivity (Single/Inde), results/coop_dasac (Coop-DASAC),
-#     results/coop_dabc (Coop-DABC). 파일명 actor_{tag}_deg{D}_tol{T}_seed{S}.pth
+# [final] Shared evaluation helpers for reproducing the paper's numbers — used by
+# notebooks B1 (Table 4), B2 (Tables B.1/B.2), and B3 (Table 5).
+# Key rules:
+#   * Every evaluation runs in eval mode (dropout OFF) with deterministic actions
+#     (corrects the train-mode evaluation inadvertently used during in-training validation)
+#   * Parameters['Cap_Pcs_Ope'] = tol + 2 must be set before creating environments (use set_cap_ope())
+#   * Checkpoints: results/baseline & sensitivity (Single/Inde), results/coop_dasac (Coop-DASAC),
+#     results/coop_dabc (Coop-DABC). Filenames: actor_{tag}_deg{D}_tol{T}_seed{S}.pth
 """Shared evaluation helpers for reproducing the paper's tables.
 
 Typical use (from a notebook that did sys.path.insert(0, CODE)):
@@ -35,8 +37,8 @@ DIR_SENS = os.path.join(RES, "sensitivity")
 DIR_DASAC = os.path.join(RES, "coop_dasac")
 DIR_DABC = os.path.join(RES, "coop_dabc")
 
-# 논문 4개 학습기법의 (체크포인트 태그, 로더 종류, 탐색 폴더).
-# kind: 'single'=단일 에이전트 SAC, 'inde'=독립 이중 SAC, 'sac'=Coop-DASAC, 'det'=Coop-DABC(결정론적 actor)
+# (checkpoint tag, loader kind, search dirs) for the paper's four learned methods.
+# kind: 'single'=single-agent SAC, 'inde'=independent dual SAC, 'sac'=Coop-DASAC, 'det'=Coop-DABC (deterministic actor)
 METHODS = {
     "Single-SAC": dict(tag="single_sac",    kind="single", dirs=[DIR_BASE, DIR_SENS]),
     "Inde-DASAC": dict(tag="inde_sac",      kind="inde",   dirs=[DIR_BASE, DIR_SENS]),
@@ -48,20 +50,20 @@ OBS_BID, OBS_OPE, ACT, HID = 107, 108, 1, 128
 
 
 def set_cap_ope(tol):
-    """운영 액션 상한 규칙 (fix #1): Cap_Pcs_Ope = tol + 2. 환경/네트워크 생성 전에 호출."""
+    """Operation action-cap rule (fix #1): Cap_Pcs_Ope = tol + 2. Call before creating envs/networks."""
     Parameters["Cap_Pcs_Ope"] = float(tol) + 2.0
     return Parameters["Cap_Pcs_Ope"]
 
 
 def make_envs(data, tol, deg):
-    """평가용 (dual, single) 환경 쌍 생성. set_cap_ope(tol)를 먼저 호출한다."""
+    """Create the (dual, single) evaluation environment pair. Call set_cap_ope(tol) first."""
     env_dual = DualAgentEnv(data, Parameters, tol=tol, degradation_cost_per_mwh=deg)
     env_sing = SingleAgentEnv(data, Parameters, degradation_cost_per_mwh=deg)
     return env_dual, env_sing
 
 
 def find_ckpt(dirs, tag, deg, tol, seed):
-    """actor_{tag}_deg{deg}_tol{tol}_seed{seed}.pth 를 폴더 목록에서 탐색."""
+    """Search the directory list for actor_{tag}_deg{deg}_tol{tol}_seed{seed}.pth."""
     for d in dirs:
         p = os.path.join(d, f"actor_{tag}_deg{deg}_tol{tol}_seed{seed}.pth")
         if os.path.exists(p):
@@ -70,7 +72,7 @@ def find_ckpt(dirs, tag, deg, tol, seed):
 
 
 def load_policy(kind, path):
-    """체크포인트 로드 후 eval 모드 정책(들) 반환."""
+    """Load a checkpoint and return the policy (or policies) in eval mode."""
     cap_b, cap_o = Parameters["Cap_Pcs_Bid"], Parameters["Cap_Pcs_Ope"]
     if kind == "single":
         pi = SingleAgentActor(OBS_BID, ACT, HID, cap_b)
@@ -91,7 +93,7 @@ def load_policy(kind, path):
 
 
 def evaluate_checkpoint(kind, path, env_dual, env_sing):
-    """체크포인트 1개를 eval 모드로 평가. 반환: (n_days, 4) = [bid, ope, deg, total]."""
+    """Evaluate one checkpoint in eval mode. Returns (n_days, 4) = [bid, ope, deg, total]."""
     model = load_policy(kind, path)
     if kind == "single":
         def f(s, _pi=model):
@@ -124,8 +126,8 @@ def evaluate_checkpoint(kind, path, env_dual, env_sing):
 
 
 def evaluate_method(name, deg, tol, data, seeds):
-    """method 이름으로 여러 시드를 평가해 per-seed day-mean 행렬 (n_seed, 4) 반환.
-    누락 시드는 건너뛰고 콘솔에 표시."""
+    """Evaluate several seeds of a named method; returns the per-seed day-mean matrix (n_seed, 4).
+    Missing seeds are skipped and reported on the console."""
     spec = METHODS[name]
     set_cap_ope(tol)
     env_dual, env_sing = make_envs(data, tol, deg)
@@ -141,8 +143,9 @@ def evaluate_method(name, deg, tol, data, seeds):
 
 
 def expert_daily(deg, tol, data, idx_start):
-    """OJPD(완전예견 전문가) 시연을 테스트 환경으로 리플레이해 일별 (bid, ope, deg) 반환.
-    idx_start: 테스트 구간 시작 인덱스 (settings의 idx_val_end)."""
+    """Replay the OJPD (perfect-foresight expert) demonstrations through the test
+    environment; returns daily (bid, ope, deg). idx_start: test-window start index
+    (idx_val_end from settings)."""
     import pandas as pd
     from envs.run_expert_buffer import populate_expert_buffers
     csv = os.path.join(ROOT, "data", "processed", "expert_actions",
@@ -156,7 +159,7 @@ def expert_daily(deg, tol, data, idx_start):
     return np.array(daily)   # (days, 3): [r_bid, r_ope, r_deg]
 
 
-# ─── OOD (Table 5) 구성 헬퍼 ─────────────────────────────────────────────────
+# ─── OOD (Table 5) construction helpers ─────────────────────────────────────
 PRICE_KEYS = ["Data_Price_Bid", "Data_Price_Ope", "Data_Price_Set"]
 SOLAR_KEYS = ["Data_Solar_Bid", "Data_Solar_Ope"]
 
@@ -167,8 +170,9 @@ def _col0(a):
 
 
 def ood_subsets(data):
-    """Part A 스트레스 서브셋 (테스트일 인덱스 dict). 원고 4.3.3/B.1의 고정 기준:
-    가격 표준편차 상위 1/3, 95퍼센타일 초과 스파이크 보유일, 태양광 하위/상위 1/3."""
+    """Part A stress subsets (dict of test-day indices). Fixed criteria from
+    manuscript sections 4.3.3/B.1: top-third price std, days containing spikes above
+    the 95th percentile, bottom/top-third solar."""
     price = _col0(data["Data_Price_Ope"]); solar = _col0(data["Data_Solar_Ope"])
     n_days = len(price) // 96
     pday = price[:n_days * 96].reshape(n_days, 96)
@@ -187,14 +191,15 @@ def ood_subsets(data):
 
 
 def slice_days(data, idx):
-    """일 인덱스 목록으로 데이터 dict를 잘라 새 dict 반환."""
+    """Slice a data dict by a list of day indices; returns a new dict."""
     return {k: np.concatenate([np.asarray(v)[i * 96:(i + 1) * 96] for i in idx], axis=0)
             for k, v in data.items()}
 
 
 def perturb_data(data, price_scale=1.0, vol_scale=1.0, price_noise=0.0,
                  solar_noise=0.0, seed=0):
-    """Part B 합성 분포이동: 가격 레벨 스케일, 변동성 확대(일평균 기준), 가우시안 노이즈."""
+    """Part B synthetic distribution shifts: price-level scaling, volatility
+    amplification (around daily means), Gaussian noise."""
     rng = np.random.default_rng(seed)
     out = {k: np.asarray(v, dtype=float).copy() for k, v in data.items()}
     for k in PRICE_KEYS:

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # ============================================================================
-# [최종 확정] Table B.2의 MPC 행 (deg 스윕, tol=5 고정) — 롤링호라이즌 2단 MILP를 재풀이하며
-# Bid/Ope/Deg 분해를 기록. 결과 캐시: results/sensitivity/mpc_components_deg.json (deg당 30~40분).
-# 실행: python mpc_components_deg.py  (torch/cvxpy가 설치된 환경에서)
-# (원본: 2026-07 리비전 마감 세션 스크래치패드)
+# [final] MPC rows of Table B.2 (deg sweep, tol fixed at 5) — re-solves the
+# rolling-horizon two-stage MILP while recording the Bid/Ope/Deg decomposition.
+# Cache: results/sensitivity/mpc_components_deg.json (30-40 min per deg).
+# Run: python mpc_components_deg.py  (in an environment with torch/cvxpy)
 # ============================================================================
 """MPC revenue components across DEGRADATION cost (tol fixed at 5).
 Mirror of analysis/_mpc_components.py but sweeping deg instead of tol, so MPC can

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# [최종] 논문 Coop-DABC(Case D) 학습 러너 — 체크포인트: results/coop_dabc/
-# 사용 예:  python run_coop_dabc.py --tol 5 --deg 5 --seed 0
-# 논문 설정 = 10,000 스텝 (Table 3). 시드 0–9(본선), 민감도는 0–4에 deg/tol 변경.
+# [final] Training runner for the paper's Coop-DABC (Case D) — checkpoints: results/coop_dabc/
+# Example:  python run_coop_dabc.py --tol 5 --deg 5 --seed 0
+# Paper setting = 10,000 steps (Table 3). Seeds 0-9 (main); sensitivity uses seeds 0-4 with varied deg/tol.
 """Coop-DABC training runner (TD3+BC + monotonic QMIX mixer, w_final.abs() fix).
 Loads the OJPD expert demonstrations, trains offline, saves the best-validation
 actor checkpoint and a result summary json to results/coop_dabc/."""

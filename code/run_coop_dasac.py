@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# [최종] 논문 Coop-DASAC(Case C) 학습 러너 — 체크포인트: results/coop_dasac/
-# 사용 예:  python run_coop_dasac.py --tol 5 --deg 5 --seed 0
-# 스윕 예 (PowerShell):  foreach ($s in 0..9) { python run_coop_dasac.py --tol 5 --deg 5 --seed $s }
+# [final] Training runner for the paper's Coop-DASAC (Case C) — checkpoints: results/coop_dasac/
+# Example:  python run_coop_dasac.py --tol 5 --deg 5 --seed 0
+# Sweep example (PowerShell):  foreach ($s in 0..9) { python run_coop_dasac.py --tol 5 --deg 5 --seed $s }
 """Coop-DASAC training runner (SAC + monotonic QMIX mixer, w_final.abs() fix).
 Mirrors run_training.py's coop_sac path but uses algorithms.coop_dasac and
 sets Cap_Pcs_Ope = tol + 2. Saves checkpoint + summary json to results/coop_dasac/."""

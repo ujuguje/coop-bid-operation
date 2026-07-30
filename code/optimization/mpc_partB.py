@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# [최종] Table 5 Part B의 MPC 행 — 교란 데이터에서 MPC 재실행. 캐시: results/ood_analysis/mpc_partB.json
+# [final] MPC rows of Table 5 Part B — re-runs MPC on the perturbed datasets. Cache: results/ood_analysis/mpc_partB.json
 """Run the rolling-horizon MPC on the Part B perturbed datasets (same perturbations
 the RL policies saw, seed=0), so MPC can be added to the Part B comparison.
 Saves per-scenario daily totals to results/ood_analysis/mpc_partB.json (incremental).

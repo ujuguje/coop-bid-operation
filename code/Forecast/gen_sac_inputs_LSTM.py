@@ -1,4 +1,4 @@
-# [최종] LSTM 예측 결과 -> RL 환경 입력 CSV(LMP_Bid/Ope, Solar_Bid) 생성 (파이프라인 1단계)
+# [final] Build RL-environment input CSVs (LMP_Bid/Ope, Solar_Bid) from LSTM predictions (pipeline stage 1)
 """
 gen_sac_inputs_LSTM.py
 

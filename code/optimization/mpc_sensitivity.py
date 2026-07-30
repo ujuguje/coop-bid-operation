@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# [최종] 민감도 (deg,tol) 설정별 MPC 총수익 — result_mpc_deg{d}_tol{t}_seed0.json 생성
+# [final] MPC total profit per (deg, tol) sensitivity configuration — writes result_mpc_deg{d}_tol{t}_seed0.json
 """Run MPC at the sensitivity (deg, tol) scenarios on the real test data, so MPC
 can be added to the sensitivity figure. Saves result_mpc_deg{d}_tol{t}_seed0.json
 (format compatible with the sensitivity figure: has 'test_mean_total')."""

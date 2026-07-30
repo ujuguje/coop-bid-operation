@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# [최종] Table 4·B.1의 MPC 행 — tol 스윕 MILP 분해. 캐시: results/sensitivity/mpc_components_tol.json
+# [final] MPC rows of Tables 4/B.1 — tol-sweep MILP decomposition. Cache: results/sensitivity/mpc_components_tol.json
 """MPC revenue components across imbalance tolerance (deg fixed at 5).
 Re-solves the rolling-horizon 2-stage MILP and tracks bid revenue / operation
 revenue / degradation cost separately, so MPC can be shown with a bid-ope split
