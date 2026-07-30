@@ -1,0 +1,16 @@
+# Not distributed: manuscript/submission files and graphical abstract
+submission/
+outputs/graphical_abstract/
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Editor / OS
+.claude/
+.vscode/
+Thumbs.db
+.DS_Store

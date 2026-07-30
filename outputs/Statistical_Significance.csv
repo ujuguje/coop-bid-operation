@@ -1,0 +1,5 @@
+comparison,test,n,dabc_mean,other_mean,diff,t_stat,p_value,significant
+Coop-DABC vs Single-SAC,paired t-test (by seed),10,4706.7,4277.7,428.9,6.636,9.526659744621464e-05,True
+Coop-DABC vs Inde-DASAC,paired t-test (by seed),10,4706.7,4450.3,256.3,12.093,7.209822399157595e-07,True
+Coop-DABC vs Coop-DASAC,paired t-test (by seed),10,4706.7,4327.6,379.0,3.968,0.00326695052369826,True
+Coop-DABC vs MPC,one-sample t-test,10,4706.7,4456.1,250.6,15.853,6.972295584685241e-08,True

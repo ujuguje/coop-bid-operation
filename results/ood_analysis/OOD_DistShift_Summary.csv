@@ -1,0 +1,7 @@
+Shift Scenario,Mean Daily Revenue ($),Std ($),Retention vs Nominal (%)
+Nominal,4671.56,1849.08,100.0
+Price -20%,3619.35,1513.37,77.5
+Price +20%,5697.23,2168.33,122.0
+Volatility x1.5,5704.61,2669.45,122.1
+Price noise 10%,4672.87,1846.51,100.0
+Solar noise 10%,4703.58,1863.49,100.7

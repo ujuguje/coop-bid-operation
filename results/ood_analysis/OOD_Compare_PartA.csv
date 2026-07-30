@@ -1,0 +1,26 @@
+Subset,Method,n_seeds,mean,std
+All Test Days,Single-SAC,10,4260.9,152.0
+High Volatility,Single-SAC,10,3930.0,104.4
+Extreme Price,Single-SAC,10,5440.0,235.0
+Low Solar,Single-SAC,10,4000.5,134.3
+High Solar,Single-SAC,10,4743.4,160.5
+All Test Days,Inde-DASAC,10,4454.8,54.0
+High Volatility,Inde-DASAC,10,4301.7,117.8
+Extreme Price,Inde-DASAC,10,5577.8,37.0
+Low Solar,Inde-DASAC,10,4308.7,62.0
+High Solar,Inde-DASAC,10,4930.5,69.4
+All Test Days,Coop-SAC,10,4566.4,33.3
+High Volatility,Coop-SAC,10,4514.9,45.0
+Extreme Price,Coop-SAC,10,5612.7,13.1
+Low Solar,Coop-SAC,10,4486.5,40.6
+High Solar,Coop-SAC,10,4968.6,26.9
+All Test Days,Coop-DABC,10,4702.9,45.6
+High Volatility,Coop-DABC,10,4449.8,48.8
+Extreme Price,Coop-DABC,10,6025.4,57.3
+Low Solar,Coop-DABC,10,4454.4,42.4
+High Solar,Coop-DABC,10,5243.3,51.7
+All Test Days,MPC,1,4456.1,0.0
+High Volatility,MPC,1,4128.7,0.0
+Extreme Price,MPC,1,5764.0,0.0
+Low Solar,MPC,1,4101.9,0.0
+High Solar,MPC,1,4998.0,0.0

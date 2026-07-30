@@ -1,0 +1,31 @@
+Scenario,Method,n_seeds,mean,std
+Nominal,Single-SAC,10,4260.9,152.0
+Price -20%,Single-SAC,10,3380.4,123.5
+Price +20%,Single-SAC,10,5144.3,176.5
+Volatility x1.5,Single-SAC,10,5016.7,162.6
+Price noise 10%,Single-SAC,10,4264.9,151.7
+Solar noise 10%,Single-SAC,10,4289.0,152.0
+Nominal,Inde-DASAC,10,4454.8,54.0
+Price -20%,Inde-DASAC,10,3537.4,46.6
+Price +20%,Inde-DASAC,10,5371.4,59.6
+Volatility x1.5,Inde-DASAC,10,5311.0,80.4
+Price noise 10%,Inde-DASAC,10,4460.3,54.3
+Solar noise 10%,Inde-DASAC,10,4482.9,54.1
+Nominal,Coop-DASAC,10,4566.4,33.3
+Price -20%,Coop-DASAC,10,3630.1,26.4
+Price +20%,Coop-DASAC,10,5497.0,38.3
+Volatility x1.5,Coop-DASAC,10,5477.8,36.1
+Price noise 10%,Coop-DASAC,10,4571.4,34.5
+Solar noise 10%,Coop-DASAC,10,4594.4,33.2
+Nominal,Coop-DABC,10,4706.7,44.4
+Price -20%,Coop-DABC,10,3611.9,36.6
+Price +20%,Coop-DABC,10,5759.7,46.8
+Volatility x1.5,Coop-DABC,10,5760.8,52.4
+Price noise 10%,Coop-DABC,10,4702.4,43.7
+Solar noise 10%,Coop-DABC,10,4737.0,43.0
+Nominal,MPC,1,4456.1,0.0
+Price -20%,MPC,1,3509.4,0.0
+Price +20%,MPC,1,5513.1,0.0
+Volatility x1.5,MPC,1,5315.9,0.0
+Price noise 10%,MPC,1,3982.4,0.0
+Solar noise 10%,MPC,1,4479.1,0.0

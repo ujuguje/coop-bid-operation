@@ -1,0 +1,13 @@
+Parameter,"ARIMA(2,1,2)","SARIMA(2,1,2)(0,0,1)[96]",Vanilla Transformer,LSTM (ours)
+Model type,Statistical (ARIMA),Statistical (SARIMA),Encoder-Decoder Transformer,Encoder-Decoder LSTM
+Seasonal component,None,"Daily (s=96), D=0, Q=1",Via decoder context,Via decoder context
+Input (encoder),100-step rolling context,Running Kalman state,24-step history (6 h),24-step history (6 h)
+Input (decoder),-,-,3-day same-slot context,3-day same-slot context
+Output horizon,8 steps (2 h),8 steps (2 h),8 steps (2 h),8 steps (2 h)
+Hidden / d_model,"AR=2, MA=2","AR=2, MA=2, SMA=1",32,32
+Attention heads,-,-,4,-
+Layers,-,-,2 enc + 2 dec,1
+Dropout,-,-,0.1,0.2
+Optimizer,Max-likelihood (BFGS),Max-likelihood (BFGS),Adam (lr=1e-3),Adam (lr=1e-3)
+Batch size,-,-,32,32
+Max epochs / patience,-,-,100 / 10,100 / 10

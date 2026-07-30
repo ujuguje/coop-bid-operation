@@ -1,0 +1,6 @@
+Data Subset,N Days,Mean Daily Revenue ($),Std ($),vs All-Days (%)
+All Test Days,30,4671.56,1849.08,100.0
+High Volatility,10,4399.96,2583.18,94.2
+Extreme Price,16,5973.93,1402.44,127.9
+Low Solar,10,4429.29,2148.81,94.8
+High Solar,10,5209.57,1844.77,111.5
