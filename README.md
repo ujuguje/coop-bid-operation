@@ -79,9 +79,9 @@ Auxiliary notebook: `A1` (Appendix C forecast-model comparison).
 
 ### Key facts (easy to get wrong)
 
-1. **All final numbers use eval-mode (dropout OFF) re-evaluation.** Validation
-   values in training logs evaluated SAC-family policies in train mode (a bug);
-   notebooks B1–B3 (via `algorithms/eval_utils.py`) are the ground truth.
+1. **Evaluation standard**: every reported number comes from re-evaluating the
+   saved checkpoints in eval mode (dropout OFF) with deterministic actions —
+   notebooks B1–B3 via `algorithms/eval_utils.py`.
 2. **Where the paper's methods live**: Coop-DASAC = `algorithms/coop_dasac.py`,
    Coop-DABC (proposed) = `algorithms/coop_dabc.py` (both with the monotonic
    QMIX hypernetwork fix, `w_final.abs()`).

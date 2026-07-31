@@ -3,7 +3,7 @@
 # notebooks B1 (Table 4), B2 (Tables B.1/B.2), and B3 (Table 5).
 # Key rules:
 #   * Every evaluation runs in eval mode (dropout OFF) with deterministic actions
-#     (corrects the train-mode evaluation inadvertently used during in-training validation)
+#     - the paper's evaluation standard
 #   * Parameters['Cap_Pcs_Ope'] = tol + 2 must be set before creating environments (use set_cap_ope())
 #   * Checkpoints: results/baseline & sensitivity (Single/Inde), results/coop_dasac (Coop-DASAC),
 #     results/coop_dabc (Coop-DABC). Filenames: actor_{tag}_deg{D}_tol{T}_seed{S}.pth
