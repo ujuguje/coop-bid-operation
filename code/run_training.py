@@ -1,7 +1,7 @@
 """
 Entry point for training all four algorithm variants.
 
-Usage (from APEN_Major_Revision/code/):
+Usage (from code/):
     python run_training.py --algo coop_bc  --seed 0
     python run_training.py --algo coop_sac --seed 0
     python run_training.py --algo inde_sac --seed 0

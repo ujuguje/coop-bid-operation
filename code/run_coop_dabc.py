@@ -8,8 +8,8 @@ actor checkpoint and a result summary json to results/coop_dabc/."""
 import argparse, os, sys, json
 import numpy as np, pandas as pd
 
-HERE = os.path.dirname(os.path.abspath(__file__))          # .../APEN_Major_Revision/code
-ROOT = os.path.dirname(HERE)                               # .../APEN_Major_Revision
+HERE = os.path.dirname(os.path.abspath(__file__))          # <repo>/code
+ROOT = os.path.dirname(HERE)                               # <repo root>
 DATA = os.path.join(ROOT, "data", "processed", "expert_actions")
 RESULTS = os.path.join(ROOT, "results", "coop_dabc")
 sys.path.insert(0, HERE)

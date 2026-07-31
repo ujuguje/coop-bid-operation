@@ -30,7 +30,7 @@ from envs.env_single import SingleAgentEnv
 from algorithms.utils import fast_evaluate, fast_evaluate_single
 
 _HERE = os.path.dirname(os.path.abspath(__file__))          # .../code/algorithms
-ROOT = os.path.dirname(os.path.dirname(_HERE))              # .../APEN_Major_Revision
+ROOT = os.path.dirname(os.path.dirname(_HERE))              # <repo root>
 RES = os.path.join(ROOT, "results")
 DIR_BASE = os.path.join(RES, "baseline")
 DIR_SENS = os.path.join(RES, "sensitivity")

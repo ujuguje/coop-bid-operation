@@ -1,7 +1,7 @@
 """
 Run perfect-foresight MILP optimization and generate expert demonstration CSV.
 
-Usage (from APEN_Major_Revision/code/):
+Usage (from code/):
     # Joint optimization (default) → generates Offline_Expert_Action_*.csv
     python optimization/run_optimization.py --mode joint
 
