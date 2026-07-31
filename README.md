@@ -75,8 +75,7 @@ rounding), including from a fresh clone of this repository.
 | `B4_Computational_Cost` | **Table B.3** (training / inference time) | ~5–10 min (GPU) |
 | `B5_Paper_Figures` | **Figs 7, 9, B.1, B.2** → `outputs/` | ~2–4 min |
 
-Auxiliary notebooks: `A1` (Appendix C forecast-model comparison),
-`A4` (sensitivity retraining), `A8` (baseline 10-seed training).
+Auxiliary notebook: `A1` (Appendix C forecast-model comparison).
 
 ### Key facts (easy to get wrong)
 
@@ -88,8 +87,9 @@ Auxiliary notebooks: `A1` (Appendix C forecast-model comparison),
    QMIX hypernetwork fix, `w_final.abs()`).
 3. **Checkpoint naming**: `actor_{tag}_deg{D}_tol{T}_seed{S}.pth`
    (tag: `single_sac` / `inde_sac` / `coop_dasac` / `coop_dabc`).
-   The `coop_sac` / `coop_bc` checkpoints (no suffix) in `baseline/` and
-   `sensitivity/` are remnants of pre-fix variants and are not used in the paper.
+   In the matching `result_*.json` files, the `test_*` fields are eval-mode
+   re-evaluations (the paper's standard); `val_returns` are the training-time
+   monitoring curves that Figure 9 plots.
 4. **Seeds**: main results (Tables 4, 5) use 10 seeds; sensitivity (B.1, B.2)
    uses 5. MPC and OJPD are deterministic. Single-SAC has no tolerance sweep
    (stated in the manuscript).
@@ -104,7 +104,7 @@ Auxiliary notebooks: `A1` (Appendix C forecast-model comparison),
 
 | Target | How |
 |---|---|
-| Single-SAC / Inde-DASAC | notebooks `A8` (main) / `A4` (sweeps) — call `code/run_training.py` |
+| Single-SAC / Inde-DASAC | `python code/run_training.py --algo single_sac --deg_cost 5.0 --tol 5.0 --seed 0` (same for `inde_sac`) |
 | Coop-DASAC | `python code/run_coop_dasac.py --tol 5 --deg 5 --seed 0` |
 | Coop-DABC (proposed) | `python code/run_coop_dabc.py --tol 5 --deg 5 --seed 0` |
 | OJPD expert demonstrations | `python code/optimization/run_optimization.py --mode joint` → `data/processed/expert_actions/` |
