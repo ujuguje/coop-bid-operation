@@ -2,9 +2,12 @@
 
 Code, data, and results for:
 
-> Seong, W., et al. (2026). **Cooperative Bid and Operation Strategy in
-> Two-Settlement Energy Market through Dual-Agent Imitation Learning on Joint
-> Optimized Policy.** *Applied Energy* (accepted, July 2026).
+> Seong, W., Lee, W., Koo, Y., Kim, H., & Kim, E. (2026). **Cooperative bid and
+> operation strategy in two-settlement energy market through dual-agent
+> imitation learning on joint optimized policy.**
+> *Applied Energy*, 426, 128580.
+> https://doi.org/10.1016/j.apenergy.2026.128580
+> ([ScienceDirect](https://www.sciencedirect.com/science/article/pii/S0306261926012365))
 
 A solar + storage plant participates in a two-settlement (day-ahead bid /
 real-time operation) electricity market. Two agents — a bidding agent and an
